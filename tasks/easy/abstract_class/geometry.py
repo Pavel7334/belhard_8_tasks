@@ -57,7 +57,6 @@ class Rectangle(Shape):
 
     def __init__(self, a: float, b: float) -> None:
         self.a = a
-        super().__init__()
         self.b = b
 
     def get_perimeter(self) -> float:
@@ -69,6 +68,8 @@ class Rectangle(Shape):
 
 class Square(Rectangle):
 
-    def __init__(self, a) -> None:
-        super().__init__(a)
+    def __init__(self, a: float) -> None:
+        self.a = a
+        super().__init__(a=self.a, b=self.a)
+
 
