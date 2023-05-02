@@ -30,3 +30,45 @@ from abc import ABC, abstractmethod
 from math import pi
 
 
+class Shape(ABC):
+
+    @abstractmethod
+    def get_perimeter(self) -> None:
+        return
+
+    @abstractmethod
+    def get_square(self) -> None:
+        return
+
+
+class Circle(Shape):
+
+    def __init__(self, r: float) -> None:
+        self.r = r
+
+    def get_perimeter(self) -> float:
+        return 2 * pi * self.r
+
+    def get_square(self) -> float:
+        return pi * self.r ** 2
+
+
+class Rectangle(Shape):
+
+    def __init__(self, a: float, b: float) -> None:
+        self.a = a
+        super().__init__()
+        self.b = b
+
+    def get_perimeter(self) -> float:
+        return 2 * (self.a + self.b)
+
+    def get_square(self) -> float:
+        return self.a * self.b
+
+
+class Square(Rectangle):
+
+    def __init__(self, a) -> None:
+        super().__init__(a)
+
