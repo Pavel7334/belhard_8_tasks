@@ -3,22 +3,27 @@
 class Gardener:
     """Класс садовник"""
 
-    def __init__(self, name: str, plant: str) -> None:
+    def __init__(self, name: str, *args) -> None:
         self.name = name
-        self._plant = plant
+        self._plants = args
 
-    def work(self):
+    def work(self) -> None:
         """работать садовнику для роста кустов"""
 
-        self._plant.grow_all()
+        for plant in self._plants:
+            plant.grow_all()
 
-    def harvest(self) -> None:
+    def harvest(self) -> list:
         """проверка, все ли плоды соспели"""
 
-        if self._plant.all_are_ripe():
-            print('Урожай собран!')
-            self._plant.give_away_all()
-
+        result_list = []
+        if all([plant.all_are_ripe() for plant in self._plants]):
+            for plant in self._plants:
+                for tomato in plant.tomatoes_list:
+                    result_list.append(tomato)
+            return result_list
         else:
-            print('Томаты ещё не дозрели')
+            print("Томаты не созрели")
+
+
 
